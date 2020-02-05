@@ -35,9 +35,11 @@ mimic2.ridge <- s.GLMNET(mimic2.train.cxr, mimic2.train$HospitalMortality,
                          alpha = 0,
                          outdir = "./Results/AllRules")
 
-# MIMIC2 ridge with rule subsets ===
-for (i in 4:1) {
-  mimic2.ridge.subset <- s.GLMNET(mimic2.train.cxr, mimic2.train$HospitalMortality,
+# EAML with rule subsets ===
+mimic2.eaml <- vector("list", 4)
+for (i in 3:0) {
+  .rules <- which(phys$DiscretizedDeltaRanking <= i)
+  mimic2.eaml[[4 - i]] <- s.GLMNET(mimic2.train.cxr[, .rules], mimic2.train$HospitalMortality,
                                   alpha = 0,
-                                  outdir = paste0("./Results/Subset", i))
+                                  outdir = paste0("./Results/DeltaRank_lte", i))
 }
