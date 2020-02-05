@@ -7,6 +7,7 @@ library(rtemis)
 
 # Data ====
 # Read the 17 physiological features to predict ICU Mortality
+# Access to data required application to PhysioNet https://physionet.org
 dat <- read.csv("/Data/MIMIC-II_Mortality17.csv")
 
 # '- Check data ====
